@@ -1,22 +1,21 @@
+/**
+ * {
+ id: 4,
+ prompt: "______ is a tool that transpiles JSX into valid JavaScript.",
+ answers: [
+   "React",
+   "Babel",
+   "Webpack",
+   "ES6"
+  ],
+  correctIndex: 1
+},
+*/
 import React, { useState, useEffect } from "react";
 import AdminNavBar from "./AdminNavBar";
 import QuestionForm from "./QuestionForm";
 import QuestionList from "./QuestionList";
 
-/**
- * {
-id: 4,
-prompt: "______ is a tool that transpiles JSX into valid JavaScript.",
-answers: [
-"React",
-"Babel",
-"Webpack",
-"ES6"
-],
-correctIndex: 1
-},
-
- */
 function App() {
   const [page, setPage] = useState("List");
   const [quizObj, setQuizObj] = useState([]);

@@ -12,14 +12,27 @@ function QuestionForm(props) {
 
   function handleChange(event) {
     setFormData({
-      ...formData,
+      ...formData, //copy the keys and add the event target to it
       [event.target.name]: event.target.value,
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
+    fetch("http://localhost:4000/questions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+         /*no id? json creates a unique id when posted*/
+        prompt: formData.prompt,
+        answers: [formData.answer1, formData.answer2, formData.answer3, formData.answer4],
+        correctIndex: parseInt(formData.correctIndex)
+      })
+      //form data is an object with properties similar to api data
+      //parse int because the number will end up being a string thru JSON
+    })
   }
 
   return (
@@ -30,8 +43,8 @@ function QuestionForm(props) {
           Prompt:
           <input
             type="text"
-            name="prompt"
-            value={formData.prompt}
+            name="prompt" //[event.target.name] when adding to 'new obj' formData
+            value={formData.prompt}//this is the targets value to equal ^^ in 'new obj'
             onChange={handleChange}
           />
         </label>
